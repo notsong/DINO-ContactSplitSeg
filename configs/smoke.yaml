@@ -1,0 +1,35 @@
+model:
+  backbone: mock
+  hidden_dim: 64
+  num_queries: 8
+  decoder_layers: 2
+  heads: 4
+  use_refiner: true
+  roi_size: 64
+train:
+  image_size: 128
+  batch_size: 1
+  epochs: 1
+  workers: 0
+  lr: 0.0003
+  backbone_lr: 0.0001
+  weight_decay: 0.01
+  freeze_backbone_epochs: 0
+  amp: false
+  stage: 2
+  checkpoint_dir: checkpoints
+  seed: 42
+data:
+  root: data
+  ignore_id: 65535
+  contact_width: 3
+inference:
+  score_threshold: 0.25
+  mask_threshold: 0.5
+  min_area: 10
+  nms_iou: 0.7
+  use_refiner: false
+  use_contact_split: true
+  split_min_area: 20
+  split_min_contact_pixels: 3
+  split_min_center_score: 0.25

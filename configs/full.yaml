@@ -1,0 +1,37 @@
+model:
+  backbone: dinov3
+  dinov3_repo: "./external/dinov3"
+  dinov3_weights: "./weights/dinov3_vits16.pth"
+  hidden_dim: 192
+  num_queries: 64
+  decoder_layers: 6
+  heads: 8
+  use_refiner: true
+  roi_size: 256
+train:
+  image_size: 768
+  batch_size: 2
+  epochs: 60
+  workers: 4
+  lr: 0.0001
+  backbone_lr: 0.00001
+  weight_decay: 0.05
+  freeze_backbone_epochs: 3
+  amp: true
+  stage: 2
+  checkpoint_dir: checkpoints
+  seed: 42
+data:
+  root: data
+  ignore_id: 65535
+  contact_width: 3
+inference:
+  score_threshold: 0.45
+  mask_threshold: 0.5
+  min_area: 120
+  nms_iou: 0.75
+  use_refiner: true
+  use_contact_split: true
+  split_min_area: 150
+  split_min_contact_pixels: 12
+  split_min_center_score: 0.25
